@@ -3,6 +3,7 @@ package com.jeckchen.eamis.mapper;
 import com.jeckchen.eamis.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 /**
  * <p>
@@ -14,5 +15,6 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface UserMapper extends BaseMapper<User> {
-
+    @Select("select ID,USERNAME,PASSWORD,PHONE,SEX,BIRTHDAY,JOB,ENTRYTIME from TB_USER where STATE=1 and PHONE=#{phone}")
+    User getUserByPhone(String phone);
 }

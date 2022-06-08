@@ -6,6 +6,7 @@ import com.jeckchen.eamis.entity.User;
 import com.jeckchen.eamis.entity.Vacate;
 import com.jeckchen.eamis.entity.WorkOvertime;
 import com.jeckchen.eamis.mapper.BusinessTripMapper;
+import com.jeckchen.eamis.mapper.UserMapper;
 import com.jeckchen.eamis.mapper.VacateMapper;
 import com.jeckchen.eamis.mapper.WorkOvertimeMapper;
 import com.jeckchen.eamis.service.UserService;
@@ -31,6 +32,9 @@ public class ConnectTest {
     private UserService userService;
 
     @Autowired
+    private UserMapper userMapper;
+
+    @Autowired
     private BusinessTripMapper businessTripMapper;
 
     @Autowired
@@ -38,6 +42,12 @@ public class ConnectTest {
 
     @Autowired
     private WorkOvertimeMapper workOvertimeMapper;
+
+    @Test
+    public void testLogin(){
+        User user = userMapper.getUserByPhone("123");
+        System.out.println(user);
+    }
 
     @Test
     public void findAll(){
