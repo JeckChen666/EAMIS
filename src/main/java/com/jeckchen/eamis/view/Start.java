@@ -1,4 +1,4 @@
-package com.jeckchen.eamis.View;
+package com.jeckchen.eamis.view;
 
 import com.jeckchen.eamis.common.SpringContextUtils;
 

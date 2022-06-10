@@ -1,6 +1,7 @@
-package com.jeckchen.eamis.View;
+package com.jeckchen.eamis.view;
 
 import com.jeckchen.eamis.common.Session;
+import com.jeckchen.eamis.common.SessionType;
 import com.jeckchen.eamis.entity.User;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -56,15 +57,20 @@ public class Home extends JFrame {
         setMinimumSize(new Dimension(712, 640));
         setBounds(100, 100, 585, 510);
 
+
         contentPane = new JPanel();
         contentPane.setBackground(Color.PINK);
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        User user = (User) Session.getSession().get("user");
-        String usernameStr = "欢迎：" + user.getUsername();
-        String userJobStr = "您的职位是：" + user.getJob();
+        String usernameStr="error";
+        String userJobStr="error";
+        {
+            User user = (User) Session.getSession().get(SessionType.USER.toString());
+            usernameStr = "欢迎：" + user.getUsername();
+            userJobStr = "您的职位是：" + user.getJob();
+        }
 
         JLabel userMessage = new JLabel(usernameStr);
         userMessage.setFont(new Font("黑体", Font.PLAIN, 24));
@@ -75,36 +81,36 @@ public class Home extends JFrame {
         userJob.setFont(new Font("黑体", Font.PLAIN, 24));
         userJob.setBounds(10, 66, 311, 46);
         contentPane.add(userJob);
-        
-        JButton personalMessageModule = new JButton("用户信息模块");
-        personalMessageModule.setAction(personalMessageModuleAaction);
-        personalMessageModule.setFont(new Font("黑体", Font.PLAIN, 22));
-        personalMessageModule.setBounds(185, 216, 300, 54);
-        contentPane.add(personalMessageModule);
-        
-        JButton attendanceModule = new JButton("考勤模块");
-        attendanceModule.setAction(attendanceModuleAaction);
-        attendanceModule.setFont(new Font("黑体", Font.PLAIN, 22));
-        attendanceModule.setBounds(185, 297, 300, 54);
-        contentPane.add(attendanceModule);
-        
-        JButton vacateModule = new JButton("请销假模块");
-        vacateModule.setAction(vacateModuleAaction);
-        vacateModule.setFont(new Font("黑体", Font.PLAIN, 22));
-        vacateModule.setBounds(185, 373, 300, 54);
-        contentPane.add(vacateModule);
-        
-        JButton workOvertimeModule = new JButton("加班模块");
-        workOvertimeModule.setAction(workOvertimeModuleAaction);
-        workOvertimeModule.setFont(new Font("黑体", Font.PLAIN, 22));
-        workOvertimeModule.setBounds(185, 448, 300, 54);
-        contentPane.add(workOvertimeModule);
-        
-        JButton businessTripModule = new JButton("出差模块");
-        businessTripModule.setAction(businessTripModuleAaction);
-        businessTripModule.setFont(new Font("黑体", Font.PLAIN, 22));
-        businessTripModule.setBounds(185, 519, 300, 54);
-        contentPane.add(businessTripModule);
+
+        JButton personalMessageModuleBtn = new JButton("用户信息模块");
+        personalMessageModuleBtn.setAction(personalMessageModuleAaction);
+        personalMessageModuleBtn.setFont(new Font("黑体", Font.PLAIN, 22));
+        personalMessageModuleBtn.setBounds(185, 216, 300, 54);
+        contentPane.add(personalMessageModuleBtn);
+
+        JButton attendanceModuleBtn = new JButton("考勤模块");
+        attendanceModuleBtn.setAction(attendanceModuleAaction);
+        attendanceModuleBtn.setFont(new Font("黑体", Font.PLAIN, 22));
+        attendanceModuleBtn.setBounds(185, 297, 300, 54);
+        contentPane.add(attendanceModuleBtn);
+
+        JButton vacateModuleBtn = new JButton("请销假模块");
+        vacateModuleBtn.setAction(vacateModuleAaction);
+        vacateModuleBtn.setFont(new Font("黑体", Font.PLAIN, 22));
+        vacateModuleBtn.setBounds(185, 373, 300, 54);
+        contentPane.add(vacateModuleBtn);
+
+        JButton workOvertimeModuleBtn = new JButton("加班模块");
+        workOvertimeModuleBtn.setAction(workOvertimeModuleAaction);
+        workOvertimeModuleBtn.setFont(new Font("黑体", Font.PLAIN, 22));
+        workOvertimeModuleBtn.setBounds(185, 448, 300, 54);
+        contentPane.add(workOvertimeModuleBtn);
+
+        JButton businessTripModuleBtn = new JButton("出差模块");
+        businessTripModuleBtn.setAction(businessTripModuleAaction);
+        businessTripModuleBtn.setFont(new Font("黑体", Font.PLAIN, 22));
+        businessTripModuleBtn.setBounds(185, 519, 300, 54);
+        contentPane.add(businessTripModuleBtn);
     }
 
 

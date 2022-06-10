@@ -1,6 +1,6 @@
 package com.jeckchen.eamis;
 
-import com.jeckchen.eamis.View.Start;
+import com.jeckchen.eamis.view.Start;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;

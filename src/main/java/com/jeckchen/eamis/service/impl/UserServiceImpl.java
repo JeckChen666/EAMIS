@@ -2,6 +2,7 @@ package com.jeckchen.eamis.service.impl;
 
 import com.jeckchen.eamis.common.Result;
 import com.jeckchen.eamis.common.Session;
+import com.jeckchen.eamis.common.SessionType;
 import com.jeckchen.eamis.entity.User;
 import com.jeckchen.eamis.entity.Vo.LoginVo;
 import com.jeckchen.eamis.mapper.UserMapper;
@@ -31,7 +32,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         user = userMapper.getUserByPhone(loginVo.getPhone());
         if (user!=null){
             if (loginVo.getPassword().equals(user.getPassword())){
-                Session.getSession().put("user", user);
+                Session.getSession().put(SessionType.USER.toString(), user);
                 return Result.ok();
             }else {
                 return Result.error("密码错误");
