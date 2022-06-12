@@ -1,6 +1,15 @@
 package com.jeckchen.eamis.view;
 
+import com.jeckchen.eamis.common.Session;
+import com.jeckchen.eamis.common.SessionType;
+import com.jeckchen.eamis.common.SpringContextUtils;
+import com.jeckchen.eamis.entity.User;
+import com.jeckchen.eamis.service.UserService;
+import com.jeckchen.eamis.view.component.ModuleBotton;
 import com.jeckchen.eamis.view.component.PersonalMessageIndex;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import java.awt.*;
 
@@ -8,9 +17,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+@Scope("prototype")
+@Component("ModulePage")
 public class ModulePage extends JFrame {
 
 	private JPanel contentPane;
+
 
 	/**
 	 * Launch the application.
@@ -38,25 +50,26 @@ public class ModulePage extends JFrame {
         setMinimumSize(new Dimension(712, 640));
         setBounds(100, 100, 585, 510);
 
-        
-		contentPane = new JPanel();
+
+//		contentPane = new JPanel();
+		contentPane= (JPanel) SpringContextUtils.getBean("PersonalMessageIndex");
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 //		contentPane.setLayout(new BorderLayout(0, 0));
 		contentPane.setLayout(null);
-		contentPane.setBackground(Color.PINK);
+		contentPane.setBackground(new Color(115, 119, 123));
 		setContentPane(contentPane);
 		
-		JPanel moduleBotton = new JPanel();
+		JPanel moduleBotton = new ModuleBotton();
 		moduleBotton.setLayout(null);
-		moduleBotton.setBackground(Color.BLUE);
+//		moduleBotton.setBackground(Color.BLUE);
 		moduleBotton.setBounds(0, 571, 698, 32);
 		contentPane.add(moduleBotton);
 
-		JPanel moduleContent = new PersonalMessageIndex();
-		moduleContent.setLayout(null);
-		moduleContent.setBackground(Color.GRAY);
-		moduleContent.setBounds(0, 0, 698, 571);
-		contentPane.add(moduleContent);
+//		JPanel moduleContent = new PersonalMessageIndex();
+//		moduleContent.setLayout(null);
+//		moduleContent.setBackground(Color.GRAY);
+//		moduleContent.setBounds(0, 0, 698, 571);
+//		contentPane.add(moduleContent);
 
 //		JPanel moduleContent = new JPanel();
 //		moduleContent.setLayout(null);

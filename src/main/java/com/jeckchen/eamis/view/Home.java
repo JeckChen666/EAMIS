@@ -2,6 +2,7 @@ package com.jeckchen.eamis.view;
 
 import com.jeckchen.eamis.common.Session;
 import com.jeckchen.eamis.common.SessionType;
+import com.jeckchen.eamis.common.SpringContextUtils;
 import com.jeckchen.eamis.entity.User;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -121,6 +122,11 @@ public class Home extends JFrame {
         }
         @Override
         public void actionPerformed(ActionEvent e) {
+            setVisible(false);// 登陆成功，本窗口隐藏
+            //打开ModulePage窗口
+            ((ModulePage) SpringContextUtils.getBean("ModulePage")).setVisible(true);
+            //销毁窗口
+            dispose();
         }
     }
     private class AttendanceModuleAaction extends AbstractAction {
