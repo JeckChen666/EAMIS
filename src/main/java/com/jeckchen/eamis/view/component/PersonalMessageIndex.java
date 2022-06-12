@@ -3,8 +3,10 @@ package com.jeckchen.eamis.view.component;
 import cn.hutool.core.date.DateUtil;
 import com.jeckchen.eamis.common.Session;
 import com.jeckchen.eamis.common.SessionType;
+import com.jeckchen.eamis.common.SpringContextUtils;
 import com.jeckchen.eamis.entity.User;
 import com.jeckchen.eamis.service.UserService;
+import com.jeckchen.eamis.view.ModulePage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -35,10 +37,11 @@ public class PersonalMessageIndex extends JPanel {
 		tabbedPane.setBounds(0, 0, 698, 571);
 		add(tabbedPane);
 		
-		JPanel personalInformation = new PersonalInformation(userService);
+		JPanel personalInformation = new PersonalInformation();
 		tabbedPane.addTab("个人信息", null, personalInformation, null);
 		
-		JPanel modifyInformation = new JPanel();
+//		JPanel modifyInformation = new JPanel();
+		JPanel modifyInformation = ((ModifyInformation) SpringContextUtils.getBean("ModifyInformation"));
 		tabbedPane.addTab("修改信息", null, modifyInformation, null);
 	}
 }

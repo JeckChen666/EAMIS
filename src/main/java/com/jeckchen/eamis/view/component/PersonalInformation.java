@@ -11,8 +11,11 @@ import com.jeckchen.eamis.common.Session;
 import com.jeckchen.eamis.common.SessionType;
 import com.jeckchen.eamis.entity.User;
 import com.jeckchen.eamis.service.UserService;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
-
+//@Scope("prototype")
+//@Component("PersonalInformation")
 public class PersonalInformation extends JPanel {
 
 
@@ -20,14 +23,11 @@ public class PersonalInformation extends JPanel {
 	/**
 	 * Create the panel.
 	 */
+
 	public PersonalInformation() {
 
-	}
-
-	public PersonalInformation(UserService userService) {
-
 		User user = (User) Session.getSession().get(SessionType.USER.toString());
-		System.out.println(user);
+//		System.out.println(user);
 
 		setBackground(new Color(241, 238, 233));
 		setBounds(0, 0, 698, 571);
