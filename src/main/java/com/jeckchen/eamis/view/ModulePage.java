@@ -6,7 +6,6 @@ import com.jeckchen.eamis.common.SpringContextUtils;
 import com.jeckchen.eamis.entity.User;
 import com.jeckchen.eamis.service.UserService;
 import com.jeckchen.eamis.view.component.ModuleBotton;
-import com.jeckchen.eamis.view.component.PersonalMessageIndex;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -53,6 +52,14 @@ public class ModulePage extends JFrame {
 
         if (Session.getSession().get(SessionType.MODULE.toString()) == "PersonalMessage") {
             contentPane = (JPanel) SpringContextUtils.getBean("PersonalMessageIndex");
+            contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+            contentPane.setLayout(null);
+            contentPane.setBackground(new Color(115, 119, 123));
+            setContentPane(contentPane);
+        }
+
+        if (Session.getSession().get(SessionType.MODULE.toString()) == "AttendanceModule"){
+            contentPane = (JPanel) SpringContextUtils.getBean("AttendanceModuleIndex");
             contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
             contentPane.setLayout(null);
             contentPane.setBackground(new Color(115, 119, 123));

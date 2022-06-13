@@ -13,5 +13,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 
 public interface AttendanceService extends IService<Attendance> {
-
+    Boolean isClockIn(String userId);
+    Boolean clockIn(String userId);
+    Attendance getAttendanceById(String userId);
 }

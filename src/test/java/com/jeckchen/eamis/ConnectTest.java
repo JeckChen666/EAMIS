@@ -1,5 +1,7 @@
 package com.jeckchen.eamis;
 
+import cn.hutool.core.date.DateTime;
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.RandomUtil;
 import com.jeckchen.eamis.entity.BusinessTrip;
 import com.jeckchen.eamis.entity.User;
@@ -9,12 +11,16 @@ import com.jeckchen.eamis.mapper.BusinessTripMapper;
 import com.jeckchen.eamis.mapper.UserMapper;
 import com.jeckchen.eamis.mapper.VacateMapper;
 import com.jeckchen.eamis.mapper.WorkOvertimeMapper;
+import com.jeckchen.eamis.service.AttendanceService;
 import com.jeckchen.eamis.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.FilterType;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -25,11 +31,15 @@ import java.util.Map;
  * @description jc
  * @date 2022年05月18日 20:21
  */
-@SpringBootTest
+
+@SpringBootTest(classes = EamisTest.class)
 public class ConnectTest {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private AttendanceService attendanceService;
 
     @Autowired
     private UserMapper userMapper;
@@ -42,6 +52,12 @@ public class ConnectTest {
 
     @Autowired
     private WorkOvertimeMapper workOvertimeMapper;
+
+    @Test
+    public void testClockIn(){
+        Boolean clockIn = attendanceService.isClockIn("4316654561738088448");
+        System.out.println(clockIn);
+    }
 
     @Test
     public void testLogin(){

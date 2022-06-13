@@ -87,6 +87,8 @@ public class Login extends JFrame {
 		usernameFiled.setToolTipText("");
 		usernameFiled.setColumns(10);
 		usernameFiled.setBounds(142, 144, 393, 32);
+		// 为了测试方便
+		usernameFiled.setText("18120901111");
 		operation.add(usernameFiled);
 		
 		JLabel Username = new JLabel("Username");
@@ -112,6 +114,8 @@ public class Login extends JFrame {
 		
 		passwordField = new JPasswordField();
 		passwordField.setBounds(142, 209, 393, 32);
+		// 为了测试方便
+		passwordField.setText("123456");
 		operation.add(passwordField);
 		
 		JButton resetBtn = new JButton("Reset");
