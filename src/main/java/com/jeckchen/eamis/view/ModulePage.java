@@ -21,49 +21,49 @@ import javax.swing.border.EmptyBorder;
 @Component("ModulePage")
 public class ModulePage extends JFrame {
 
-	private JPanel contentPane;
+    private JPanel contentPane;
 
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					ModulePage frame = new ModulePage();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+    /**
+     * Launch the application.
+     */
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    ModulePage frame = new ModulePage();
+                    frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 
-	/**
-	 * Create the frame.
-	 */
-	public ModulePage() {
+    /**
+     * Create the frame.
+     */
+    public ModulePage() {
         setTitle("EAMIS");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setMinimumSize(new Dimension(712, 640));
         setBounds(100, 100, 585, 510);
 
 
-//		contentPane = new JPanel();
-		contentPane= (JPanel) SpringContextUtils.getBean("PersonalMessageIndex");
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-//		contentPane.setLayout(new BorderLayout(0, 0));
-		contentPane.setLayout(null);
-		contentPane.setBackground(new Color(115, 119, 123));
-		setContentPane(contentPane);
-		
-		JPanel moduleBotton = new ModuleBotton();
-		moduleBotton.setLayout(null);
+        if (Session.getSession().get(SessionType.MODULE.toString()) == "PersonalMessage") {
+            contentPane = (JPanel) SpringContextUtils.getBean("PersonalMessageIndex");
+            contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+            contentPane.setLayout(null);
+            contentPane.setBackground(new Color(115, 119, 123));
+            setContentPane(contentPane);
+        }
+
+        JPanel moduleBotton = new ModuleBotton();
+        moduleBotton.setLayout(null);
 //		moduleBotton.setBackground(Color.BLUE);
-		moduleBotton.setBounds(0, 571, 698, 32);
-		contentPane.add(moduleBotton);
+        moduleBotton.setBounds(0, 571, 698, 32);
+        contentPane.add(moduleBotton);
 
 //		JPanel moduleContent = new PersonalMessageIndex();
 //		moduleContent.setLayout(null);
@@ -83,5 +83,5 @@ public class ModulePage extends JFrame {
 //
 //		JPanel panel = new JPanel();
 //		tabbedPane.addTab("New tab", null, panel, null);
-	}
+    }
 }

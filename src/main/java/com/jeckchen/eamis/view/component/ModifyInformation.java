@@ -190,7 +190,7 @@ public class ModifyInformation extends JPanel {
 			String searchId = ID框.getText();
 			nowUser=userService.getById(searchId);
 
-			System.out.println(nowUser);
+			System.out.println("当前User"+nowUser);
 
 			updateUI();
 
@@ -211,6 +211,25 @@ public class ModifyInformation extends JPanel {
 		}
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			User sumbitUser = new User();
+			sumbitUser.setId(ID框.getText());
+			sumbitUser.setUsername(用户名框.getText());
+			sumbitUser.setPassword(nowUser.getPassword());
+			sumbitUser.setPhone(电话框.getText());
+			sumbitUser.setSex(Double.valueOf(性别框.getText()));
+			sumbitUser.setBirthday(DateUtil.parse(生日框.getText()));
+			sumbitUser.setJob(职位框.getText());
+			sumbitUser.setEntrytime(DateUtil.parse(入职时间框.getText()));
+			sumbitUser.setState(Double.valueOf(状态框.getText()));
+
+			System.out.println("sumbitUser--->"+sumbitUser);
+
+			boolean isUpdate = userService.updateById(sumbitUser);
+
+			System.out.println("成功更新了吗？；"+isUpdate);
+
+			JOptionPane.showMessageDialog(null, "是否成功："+isUpdate, "提示", JOptionPane.ERROR_MESSAGE);
+
 		}
 	}
 }

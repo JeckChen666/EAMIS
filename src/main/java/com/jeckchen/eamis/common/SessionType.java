@@ -8,5 +8,5 @@ package com.jeckchen.eamis.common;
  * @date 2022年06月10日 17:32
  */
 public enum SessionType {
-    USER
+    USER,MODULE
 }
