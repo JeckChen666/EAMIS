@@ -4,6 +4,7 @@ import cn.hutool.core.date.DateField;
 import cn.hutool.core.date.DateUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.jeckchen.eamis.entity.Attendance;
+import com.jeckchen.eamis.entity.Vo.AttendanceVo;
 import com.jeckchen.eamis.mapper.AttendanceMapper;
 import com.jeckchen.eamis.service.AttendanceService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * <p>
@@ -67,5 +69,14 @@ public class AttendanceServiceImpl extends ServiceImpl<AttendanceMapper, Attenda
         Date endOfDay = DateUtil.endOfDay(DateUtil.date());
         queryWrapper.apply("CREATE_TIME >= to_date('" + beginOfDay + "','yyyy-MM-dd HH24:MI:SS')"+" AND "+"CREATE_TIME <= to_date('" + endOfDay + "','yyyy-MM-dd HH24:MI:SS')"+" AND "+"USER_ID = "+userId);
         return this.getOne(queryWrapper);
+    }
+
+
+    @Override
+    public List<AttendanceVo> getAttendanceList(String id) {
+        Date lastYearDate = DateUtil.offset(DateUtil.date(), DateField.YEAR, -5);
+        String formatDate = DateUtil.format(lastYearDate, "yyyy-MM-dd HH:mm:ss");
+        List<AttendanceVo> list = attendanceMapper.getList(id, formatDate);
+        return list;
     }
 }

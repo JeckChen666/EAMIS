@@ -16,8 +16,8 @@ import org.springframework.stereotype.Component;
 import java.awt.event.ActionEvent;
 
 @Scope("prototype")
-@Component("ModifyInformation")
-public class ModifyInformation extends JPanel {
+@Component("PersonalModifyInformation")
+public class PersonalModifyInformation extends JPanel {
 	private JTextField 用户名框;
 	private JTextField 电话框;
 	private JTextField 性别框;
@@ -38,7 +38,7 @@ public class ModifyInformation extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public ModifyInformation(UserService userService) {
+	public PersonalModifyInformation(UserService userService) {
 
 		setBackground(new Color(241, 238, 233));
 		setBounds(0, 0, 698, 571);
@@ -224,7 +224,7 @@ public class ModifyInformation extends JPanel {
 
 			System.out.println("sumbitUser--->"+sumbitUser);
 
-			boolean isUpdate = userService.updateById(sumbitUser);
+			boolean isUpdate = userService.saveOrUpdate(sumbitUser);
 
 			System.out.println("成功更新了吗？；"+isUpdate);
 

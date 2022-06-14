@@ -34,9 +34,12 @@ public class AttendanceModuleIndex extends JPanel {
 
 		JPanel clockIn = ((ClockIn) SpringContextUtils.getBean("ClockIn"));
 		tabbedPane.addTab("个人打卡", null, clockIn, null);
-		
+
+		JPanel attendanceList = ((AttendanceList) SpringContextUtils.getBean("AttendanceList"));
+		tabbedPane.addTab("打卡记录", null, attendanceList, null);
+
 //		JPanel modifyInformation = new JPanel();
-//		JPanel modifyInformation = ((ModifyInformation) SpringContextUtils.getBean("ModifyInformation"));
+//		JPanel modifyInformation = ((PersonalModifyInformation) SpringContextUtils.getBean("PersonalModifyInformation"));
 //		tabbedPane.addTab("修改信息", null, modifyInformation, null);
 	}
 }
