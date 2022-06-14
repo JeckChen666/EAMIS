@@ -5,9 +5,8 @@ import com.jeckchen.eamis.common.Session;
 import com.jeckchen.eamis.common.SessionType;
 import com.jeckchen.eamis.common.SpringContextUtils;
 import com.jeckchen.eamis.entity.User;
-import com.jeckchen.eamis.entity.Vo.VacateVo;
-import com.jeckchen.eamis.entity.Vo.WorkOvertimeVo;
-import com.jeckchen.eamis.service.WorkOvertimeService;
+import com.jeckchen.eamis.entity.Vo.BusinessTripVo;
+import com.jeckchen.eamis.service.BusinessTripService;
 import com.jeckchen.eamis.view.Home;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -22,11 +21,11 @@ import java.awt.event.ComponentEvent;
 import java.util.List;
 
 @Scope("prototype")
-@Component("WorkOvertimeList")
-public class WorkOvertimeList extends JPanel {
+@Component("BusinessTripList")
+public class BusinessTripList extends JPanel {
 
 	@Autowired
-	private WorkOvertimeService workOvertimeService;
+	private BusinessTripService businessTripService;
 
 	JTable table;
 	JScrollPane pane;
@@ -35,7 +34,7 @@ public class WorkOvertimeList extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public WorkOvertimeList(WorkOvertimeService workOvertimeService) {
+	public BusinessTripList(BusinessTripService businessTripService) {
 		setBackground(new Color(241, 238, 233));
 		setBounds(0, 0, 698, 571);
 		setLayout(null);
@@ -47,7 +46,7 @@ public class WorkOvertimeList extends JPanel {
 		pane.setBounds(10, 44, 678, 453);
 		add(pane);
 		
-		JLabel stateTip = new JLabel("状态提示：0->删除 1->进行中  2->结束");
+		JLabel stateTip = new JLabel("状态提示：0->删除 1->未开始  2->进行中 3->结束");
 		stateTip.setFont(new Font("黑体", Font.PLAIN, 14));
 		stateTip.setBounds(10, 10, 678, 27);
 		add(stateTip);
@@ -60,8 +59,8 @@ public class WorkOvertimeList extends JPanel {
 		add(deleteBtn);
 		
 		JButton endBtn = new JButton("end");
-		Action endAction = new endAction();
-		endBtn.setAction(endAction);
+		Action reportBackAction = new EndAction();
+		endBtn.setAction(reportBackAction);
 		endBtn.setFont(new Font("黑体", Font.PLAIN, 16));
 		endBtn.setBounds(492, 507, 93, 23);
 		add(endBtn);
@@ -75,7 +74,7 @@ public class WorkOvertimeList extends JPanel {
 		
 		textField = new JTextField();
 		textField.setFont(new Font("黑体", Font.PLAIN, 14));
-		textField.setBounds(10, 507, 355, 27);
+		textField.setBounds(10, 507, 369, 27);
 		add(textField);
 		textField.setColumns(10);
 
@@ -88,22 +87,23 @@ public class WorkOvertimeList extends JPanel {
 		});
 
 	}
-	protected void showTable(ComponentEvent e) {
+
+	protected void showTable(ComponentEvent e)
+	{
 		User user = (User) Session.getSession().get(SessionType.USER.toString());
-
-		List<WorkOvertimeVo> workOvertimeList = workOvertimeService.getWorkOvertimeList(user.getId());
-
-		System.out.println(workOvertimeList);
+		List<BusinessTripVo> list = businessTripService.getBusinessTripList(user.getId());
 
 		DefaultTableModel tableModel=(DefaultTableModel) table.getModel();    //获得表格模型
 		tableModel.setRowCount(0);    //清空表格中的数据
-		tableModel.setColumnIdentifiers(new Object[]{"id","username","reason","start_time","end_time","state"});    //设置表头
+		tableModel.setColumnIdentifiers(new Object[]{"id","username","reason","location","cost","start_time","end_time","state"});    //设置表头
 
-		for (WorkOvertimeVo v :workOvertimeList) {
+		for (BusinessTripVo v :list) {
 			tableModel.addRow(new Object[]{
 					v.getId(),
 					v.getUsername(),
 					v.getReason(),
+					v.getLocation(),
+					v.getCost(),
 					DateUtil.format(v.getStartTime(),"yyyy年MM月dd日 HH:mm"),
 					DateUtil.format(v.getEndTime(),"yyyy年MM月dd日 HH:mm"),
 					v.getState()});
@@ -125,7 +125,7 @@ public class WorkOvertimeList extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			String id = textField.getText();
-			Boolean isDelete = workOvertimeService.logicalRemove(id);
+			Boolean isDelete = businessTripService.logicalRemove(id);
 			JOptionPane.showMessageDialog(null, "是否成功："+isDelete, "提示", JOptionPane.WARNING_MESSAGE);
 
 			((Home) SpringContextUtils.getBean("Home")).setVisible(true);
@@ -134,15 +134,15 @@ public class WorkOvertimeList extends JPanel {
 			win.dispose();
 		}
 	}
-	private class endAction extends AbstractAction {
-		public endAction() {
+	private class EndAction extends AbstractAction {
+		public EndAction() {
 			putValue(NAME, "End");
-			putValue(SHORT_DESCRIPTION, "end");
+			putValue(SHORT_DESCRIPTION, "End");
 		}
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			String id = textField.getText();
-			Boolean isEnd = workOvertimeService.logicalEnd(id);
+			Boolean isEnd = businessTripService.logicalEnd(id);
 			JOptionPane.showMessageDialog(null, "是否成功："+isEnd, "提示", JOptionPane.WARNING_MESSAGE);
 
 			((Home) SpringContextUtils.getBean("Home")).setVisible(true);
@@ -160,7 +160,7 @@ public class WorkOvertimeList extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			String id = textField.getText();
-			Boolean isStart = workOvertimeService.logicalStart(id);
+			Boolean isStart = businessTripService.logicalStart(id);
 			JOptionPane.showMessageDialog(null, "是否成功："+isStart, "提示", JOptionPane.WARNING_MESSAGE);
 
 			((Home) SpringContextUtils.getBean("Home")).setVisible(true);
