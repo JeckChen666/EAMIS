@@ -228,7 +228,7 @@ public class ModifyInformation extends JPanel {
 
 			System.out.println("成功更新了吗？；"+isUpdate);
 
-			JOptionPane.showMessageDialog(null, "是否成功："+isUpdate, "提示", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "是否成功："+isUpdate, "提示", JOptionPane.WARNING_MESSAGE);
 
 		}
 	}

@@ -152,6 +152,12 @@ public class Home extends JFrame {
         }
         @Override
         public void actionPerformed(ActionEvent e) {
+            setVisible(false);// 登陆成功，本窗口隐藏
+            //打开ModulePage窗口
+            Session.getSession().put(SessionType.MODULE.toString(),"VacateModule");
+            ((ModulePage) SpringContextUtils.getBean("ModulePage")).setVisible(true);
+            //销毁窗口
+            dispose();
         }
     }
     private class WorkOvertimeModuleAaction extends AbstractAction {

@@ -32,9 +32,8 @@ public class ClockIn extends JPanel {
 	 * Create the panel.
 	 */
 	public ClockIn(AttendanceService attendanceService) {
-		String id = user.getId();
-		System.out.println(id);
-		Boolean isClockIn = attendanceService.isClockIn(id);
+		String userId = user.getId();
+		Boolean isClockIn = attendanceService.isClockIn(userId);
 
 		setBackground(new Color(241, 238, 233));
 		setBounds(0, 0, 698, 571);
@@ -81,7 +80,7 @@ public class ClockIn extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			Boolean isOK = attendanceService.clockIn(user.getId());
-			JOptionPane.showMessageDialog(null, "是否成功："+isOK, "提示", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "是否成功："+isOK, "提示", JOptionPane.WARNING_MESSAGE);
 
 			((Home) SpringContextUtils.getBean("Home")).setVisible(true);
 			JComponent comp = (JComponent) e.getSource();

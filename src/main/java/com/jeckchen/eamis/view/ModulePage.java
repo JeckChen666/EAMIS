@@ -66,6 +66,14 @@ public class ModulePage extends JFrame {
             setContentPane(contentPane);
         }
 
+        if (Session.getSession().get(SessionType.MODULE.toString()) == "VacateModule"){
+            contentPane = (JPanel) SpringContextUtils.getBean("VacateModuleIndex");
+            contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+            contentPane.setLayout(null);
+            contentPane.setBackground(new Color(115, 119, 123));
+            setContentPane(contentPane);
+        }
+
         JPanel moduleBotton = new ModuleBotton();
         moduleBotton.setLayout(null);
 //		moduleBotton.setBackground(Color.BLUE);
