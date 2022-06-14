@@ -7,6 +7,7 @@ import com.jeckchen.eamis.entity.BusinessTrip;
 import com.jeckchen.eamis.entity.User;
 import com.jeckchen.eamis.entity.Vacate;
 import com.jeckchen.eamis.entity.Vo.VacateVo;
+import com.jeckchen.eamis.entity.Vo.WorkOvertimeVo;
 import com.jeckchen.eamis.entity.WorkOvertime;
 import com.jeckchen.eamis.mapper.BusinessTripMapper;
 import com.jeckchen.eamis.mapper.UserMapper;
@@ -15,6 +16,7 @@ import com.jeckchen.eamis.mapper.WorkOvertimeMapper;
 import com.jeckchen.eamis.service.AttendanceService;
 import com.jeckchen.eamis.service.UserService;
 import com.jeckchen.eamis.service.VacateService;
+import com.jeckchen.eamis.service.WorkOvertimeService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -57,6 +59,15 @@ public class ConnectTest {
 
     @Autowired
     private WorkOvertimeMapper workOvertimeMapper;
+
+    @Autowired
+    private WorkOvertimeService workOvertimeService;
+
+    @Test
+    public void testGetWOT(){
+        List<WorkOvertimeVo> workOvertimeList = workOvertimeService.getWorkOvertimeList("1511637171867447000");
+        System.out.println(workOvertimeList);
+    }
 
     @Test
     public void testGetVacateList(){
