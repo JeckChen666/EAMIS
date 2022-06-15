@@ -34,7 +34,7 @@ public class Vacate implements Serializable {
     private String userId;
 
     @TableField("REASON")
-    private Clob reason;
+    private String reason;
 
     @TableField("START_TIME")
     private Date startTime;

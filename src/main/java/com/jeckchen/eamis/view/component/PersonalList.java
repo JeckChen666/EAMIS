@@ -44,7 +44,7 @@ public class PersonalList extends JPanel {
 		pane.setBounds(10, 44, 678, 453);
 		add(pane);
 
-		JLabel stateTip = new JLabel("状态提示：0->提早 1->正常 2->迟到");
+		JLabel stateTip = new JLabel("状态提示：0->删除 1->在职 2->异常");
 		stateTip.setFont(new Font("黑体", Font.PLAIN, 14));
 		stateTip.setBounds(10, 10, 678, 27);
 		add(stateTip);

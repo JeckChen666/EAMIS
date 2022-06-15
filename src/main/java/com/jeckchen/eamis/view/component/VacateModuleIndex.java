@@ -34,6 +34,9 @@ public class VacateModuleIndex extends JPanel {
 
 		JPanel vacateList = ((VacateList) SpringContextUtils.getBean("VacateList"));
 		tabbedPane.addTab("请假表", null, vacateList, null);
+
+		JPanel vacateAdd = ((VacateAdd) SpringContextUtils.getBean("VacateAdd"));
+		tabbedPane.addTab("新增请假", null, vacateAdd, null);
 	}
 
 }

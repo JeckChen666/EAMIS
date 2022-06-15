@@ -30,7 +30,7 @@ public interface VacateMapper extends BaseMapper<Vacate> {
             "               TV.END_TIME AS END_TIME,\n" +
             "               TV.STATE AS STATE\n" +
             "        from TB_VACATE TV left join TB_USER TU on TU.ID = TV.USER_ID\n" +
-            "        where TV.START_TIME >= to_date(#{startTime},'yyyy-MM-dd HH24:MI:SS') AND TU.ID=#{userId}")
+            "        where TV.START_TIME >= to_date(#{startTime},'yyyy-MM-dd HH24:MI:SS') AND TU.ID=#{userId} order by TV.START_TIME desc")
     List<VacateVo> getList(@Param("userId")String userId, @Param("startTime")String startTime);
 
 }
