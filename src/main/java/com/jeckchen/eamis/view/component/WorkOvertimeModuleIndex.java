@@ -34,6 +34,9 @@ public class WorkOvertimeModuleIndex extends JPanel {
 
 		JPanel workOvertimeList = ((WorkOvertimeList) SpringContextUtils.getBean("WorkOvertimeList"));
 		tabbedPane.addTab("加班", null, workOvertimeList, null);
+
+		JPanel workOvertimeAdd = ((WorkOvertimeAdd) SpringContextUtils.getBean("WorkOvertimeAdd"));
+		tabbedPane.addTab("加班申请", null, workOvertimeAdd, null);
 	}
 
 }
