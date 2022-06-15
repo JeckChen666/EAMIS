@@ -75,7 +75,7 @@ public class WorkOvertimeAdd extends JPanel {
 		submitButton.setBounds(569, 460, 102, 30);
 		add(submitButton);
 		
-		JLabel tip = new JLabel("Tip：");
+		JLabel tip = new JLabel("Tip：时间格式1970-01-01 14:15 默认状态为1，既进行中");
 		tip.setFont(new Font("黑体", Font.PLAIN, 16));
 		tip.setBounds(38, 337, 455, 49);
 		add(tip);
