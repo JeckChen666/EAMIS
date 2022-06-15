@@ -5,6 +5,7 @@ import com.jeckchen.eamis.common.SessionType;
 import com.jeckchen.eamis.common.SpringContextUtils;
 import com.jeckchen.eamis.entity.User;
 import com.jeckchen.eamis.service.BusinessTripService;
+import com.jeckchen.eamis.service.TripUserService;
 import com.jeckchen.eamis.service.WorkOvertimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -18,6 +19,9 @@ public class BusinessTripModuleIndex extends JPanel {
 
 	@Autowired
 	private BusinessTripService businessTripService;
+
+	@Autowired
+	private TripUserService tripUserService;
 
 	/**
 	 * Create the panel.
@@ -34,6 +38,9 @@ public class BusinessTripModuleIndex extends JPanel {
 
 		JPanel businessTripList = ((BusinessTripList) SpringContextUtils.getBean("BusinessTripList"));
 		tabbedPane.addTab("出差", null, businessTripList, null);
+
+		JPanel businessTripAdd = ((BusinessTripAdd) SpringContextUtils.getBean("BusinessTripAdd"));
+		tabbedPane.addTab("出差申请", null, businessTripAdd, null);
 	}
 
 }

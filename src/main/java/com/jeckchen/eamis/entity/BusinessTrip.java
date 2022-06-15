@@ -31,7 +31,7 @@ public class BusinessTrip implements Serializable {
     private String id;
 
     @TableField("REASON")
-    private Clob reason;
+    private String reason;
 
     @TableField("LOCATION")
     private String location;
